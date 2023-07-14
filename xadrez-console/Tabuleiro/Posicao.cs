@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Tabuleiro
+namespace tabuleiro
 {
-    internal class Posicao
+    public class Posicao
     {
         public int linha { get; set; }
         public int coluna { get; set; }

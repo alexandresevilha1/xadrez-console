@@ -4,7 +4,7 @@
     {
         public Posicao posicao { get; set;  }
         public Cor cor { get; set; }
-        public int qteMovimentos { get; protected set; }
+        public int qteMovimentos { get; protected set; } //protected set para permitir somente a própia classe e subclasses de acessar
         public Tabuleiro tab { get; protected set; }
 
         public Peca(Posicao posicao, Cor cor, Tabuleiro tab)

@@ -3,7 +3,7 @@
     public abstract class Peca
     {
         public Posicao posicao { get; set;  }
-        public Cor cor { get; set; }
+        public Cor cor { get; protected set; }
         public int qteMovimentos { get; protected set; } //protected set para permitir somente a própia classe e subclasses de acessar
         public Tabuleiro tab { get; protected set; }
 
@@ -18,6 +18,11 @@
         public void incrementarQteMovimentos()
         {
             qteMovimentos++;
+        }
+
+        public void decrementarQteMovimentos()
+        {
+            qteMovimentos--;
         }
 
         public bool existeMovimentosPossiveis()

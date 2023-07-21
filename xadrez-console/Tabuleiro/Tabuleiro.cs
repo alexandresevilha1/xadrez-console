@@ -13,9 +13,9 @@
             pecas = new Peca[linhas, colunas];
         }
 
-        public Peca peca(int linhas, int colunas) 
+        public Peca peca(int linha, int coluna) 
         {
-            return pecas[linhas, colunas];
+            return pecas[linha, coluna];
         }
 
         public Peca peca(Posicao pos)

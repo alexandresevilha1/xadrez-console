@@ -2,12 +2,12 @@
 
 namespace xadrez
 {
-    public class Rei : Peca
+    class Rei : Peca
     {
 
         private PartidaDeXadrez partida;
 
-        public Rei(Tabuleiro tab, Cor cor, PartidaDeXadrez partida) : base(cor, tab)
+        public Rei(Tabuleiro tab, Cor cor, PartidaDeXadrez partida) : base(tab, cor)
         {
             this.partida = partida;
         }
@@ -20,7 +20,7 @@ namespace xadrez
         private bool podeMover(Posicao pos)
         {
             Peca p = tab.peca(pos);
-            return p == null || p.cor !=cor;
+            return p == null || p.cor != cor;
         }
 
         private bool testeTorreParaRoque(Posicao pos)
@@ -29,62 +29,55 @@ namespace xadrez
             return p != null && p is Torre && p.cor == cor && p.qteMovimentos == 0;
         }
 
-
         public override bool[,] movimentosPossiveis()
         {
             bool[,] mat = new bool[tab.linhas, tab.colunas];
-            Posicao pos = new Posicao(0,0);
+
+            Posicao pos = new Posicao(0, 0);
 
             // acima
             pos.definirValores(posicao.linha - 1, posicao.coluna);
-            if (tab.posicaoValida(pos) && podeMover(pos) ) 
+            if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-
-            // nordeste
+            // ne
             pos.definirValores(posicao.linha - 1, posicao.coluna + 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-
             // direita
             pos.definirValores(posicao.linha, posicao.coluna + 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-
-            //sudeste
+            // se
             pos.definirValores(posicao.linha + 1, posicao.coluna + 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-
             // abaixo
             pos.definirValores(posicao.linha + 1, posicao.coluna);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-
-            // sudoeste
+            // so
             pos.definirValores(posicao.linha + 1, posicao.coluna - 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-
             // esquerda
             pos.definirValores(posicao.linha, posicao.coluna - 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
                 mat[pos.linha, pos.coluna] = true;
             }
-
-            // noroeste
+            // no
             pos.definirValores(posicao.linha - 1, posicao.coluna - 1);
             if (tab.posicaoValida(pos) && podeMover(pos))
             {
@@ -105,7 +98,6 @@ namespace xadrez
                         mat[posicao.linha, posicao.coluna + 2] = true;
                     }
                 }
-
                 // #jogadaespecial roque grande
                 Posicao posT2 = new Posicao(posicao.linha, posicao.coluna - 4);
                 if (testeTorreParaRoque(posT2))
@@ -120,7 +112,8 @@ namespace xadrez
                 }
             }
 
-                return mat;
+
+            return mat;
         }
     }
 }
